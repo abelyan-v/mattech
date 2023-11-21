@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать новую заявку</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div style="text-align: center;"><h1>Создать новую заявку</h1></div>
+<div id="material" th:text="${materials}" style="display:none" />
+<div id="provider" th:text="${providers}" style="display:none" />
+<div id="recipient" th:text="${recipients}" style="display:none" />
+
+<div th:insert="/blocks/header :: header"></div>
+
+<div class="col-md-10 mx-auto col-lg-5">
+    <form class="p-4 p-md-5 border rounded-3 bg-light" action="/application/add" method="post">
+        <div class="form-floating mb-3">
+            <select name="material" class="form-select" aria-label="Default select example">
+                <option selected>Выберите материал</option>
+                <option th:each="material : ${materials}" th:value="${material}" th:text="${material}"></option>
+            </select>
+            <label for="floatingInput2">Материал</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select name="provider"class="form-select" aria-label="Default select example">
+                <option selected>Выберите поставщика</option>
+                <option th:each="provider : ${providers}" th:value="${provider}" th:text="${provider}"></option>
+            </select>
+            <label for="floatingInput2">Поставщик</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select name="recipient" class="form-select" aria-label="Default select example">
+                <option selected>Выберите получателя</option>
+                <option th:each="recipient : ${recipients}" th:value="${recipient}" th:text="${recipient}"></option>
+            </select>
+            <label for="floatingInput2">Получатель</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input name="fund" type="text" class="form-control" id="floatingInput2" placeholder="name@example.com">
+            <label for="floatingInput2">Фонд</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
+    </form>
+</div>
+
+</body>
+</html>
